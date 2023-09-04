@@ -1,5 +1,4 @@
 # インストールした discord.py を読み込む
-from keep_alive import keep_alive
 import json
 import os
 import discord
