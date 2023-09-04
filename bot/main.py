@@ -8,7 +8,7 @@ import time
 import pytz
 
 # 自分のBotのアクセストークンに置き換えてください
-TOKEN = os.environ['DISCORD_TOKEN']
+TOKEN = ''
 
 # 接続に必要なオブジェクトを生成
 intents = discord.Intents.all()
@@ -91,20 +91,21 @@ async def on_member_update(before, after):
 	welcome_role = guild.get_role(ROLE_WELCOME_ID)
 	beginner_students_role = guild.get_role(ROLE_BEGINNER_STUDENT_ID)
 	advanced_students_role = guild.get_role(ROLE_ADVANCED_STUDENT_ID)
-	expert_students_role = guild.get_role(ROLE_ADVANCED_STUDENT_ID)
+	expert_students_role = guild.get_role(ROLE_EXPERT_STUDENT_ID)
 
+	print()
 	if freshman_role in before.roles and freshman_role not in after.roles:
 		await after.add_roles(welcome_role)
 		welcome_dict[after.id] = 66
 		with open('json/welcome.json', 'w') as f:
 			json.dump(welcome_dict, f, indent=2)
 
-	if after.id in beginner_students:
-		await after.add_roles(beginner_students_role)
-	if after.id in advanced_students:
-		await after.add_roles(advanced_students_role)
-	if after.id in expert_students:
-		await after.add_roles(expert_students_role)
+		if after.id in beginner_students:
+			await after.add_roles(beginner_students_role)
+		if after.id in advanced_students:
+			await after.add_roles(advanced_students_role)
+		if after.id in expert_students:
+			await after.add_roles(expert_students_role)
 
 
 # あるメッセージにリアクションがついた場合、リアクションごとに異なる状態を付与する
