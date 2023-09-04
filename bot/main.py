@@ -141,5 +141,4 @@ async def on_reaction_add(reaction, user):
 
 
 # Botの起動とDiscordサーバーへの接続
-keep_alive()
 client.run(TOKEN)
